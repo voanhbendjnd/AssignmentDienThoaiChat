@@ -1,0 +1,16 @@
+2?voanhben?123456?user@gmail.com?USER
+3?admin@@?admin@@?admin2@gmail.com?ADMIN
+4?voanhben1607?voanhben1607?benben@gmail.com?USER
+5?user?123456?user1@gmail.com?USER
+6?ben?user222@gmail.com?123?USER
+7?abcd?123?mai@vb@gmail.com?USER
+8?lethanh?123?ac@gmail.com?USER
+9?anhben?123?djnd@gmail.com?USER
+10?concamaucam?123?@gmail.com?USER
+11?Thanh?123?lamthoaithanh@gmail.com?USER
+12?user2?user2?user@gamil.vn.com?USER
+13?thanhngu?123?thanhngu@gmail.com?USER
+14?admin?123456?admin@gmail.com?ADMIN
+15?khang12313?1234567890?khang@gmail.com?USER
+16?Vo Anh User?12345678?user001@gmail.com?USER
+17?Nhan?123456789?nhan@gmail.com?USER
