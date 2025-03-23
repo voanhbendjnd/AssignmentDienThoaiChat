@@ -6,8 +6,10 @@ import java.util.Optional;
 import java.util.Scanner;
 
 import domain.entity.OrderUserImpl;
+import domain.entity.Cart;
 import domain.entity.OrderImpl;
 import domain.entity.Product;
+import handle.HandleCart;
 import handle.HandleOrder;
 import handle.HandleOrderUser;
 import handle.HandleProduct;
@@ -22,30 +24,26 @@ public class ViewOrder {
     // hàm này để thay đổi trạng thái của đơn hàng
     public static void changeStatus(List<OrderImpl> orderList, List<OrderUserImpl> orderUserList, String id,
             int status) {
+        // cart
+        HandleCart handleCart = new HandleCart();
+        List<Cart> listCart = handleCart.read(AllFile.fileCartTxt);
+        // product
         HandleProduct handleProduct = new HandleProduct();
         List<Product> proList = handleProduct.read(AllFile.fileProductTxt);
+        // order
         HandleOrderUser handleUser = new HandleOrderUser();
         HandleOrder handle = new HandleOrder();
         boolean check = false;
         Long orderId = null;
         Long stId = null;
-        // Long stUserId = null;
         Long stProductId = null;
-        // String stName = "";
-        // String stAddress = "";
-        // String stPhone = "";
-        // Long stPrice = null;
-
         for (OrderImpl x : orderList) {
             if (x.getId().equals(Long.parseLong(id))) {
                 check = true;
                 stId = x.getId();
-                // stUserId = x.getUser_id();
+                // produtct id của đơn hàng adminadmin
                 stProductId = x.getProduct_id();
-                // stName = x.getName();
-                // stAddress = x.getAddress();
-                // stPhone = x.getPhone();
-                // stPrice = x.getPrice();
+                // lấy ra thay đổi status
                 orderId = x.getOrder_id();
                 break;
             }
@@ -74,30 +72,33 @@ public class ViewOrder {
                 Long stockData = null;
                 for (Product x : proList) {
                     if (x.getCode().equals(stProductId)) {
-                        // System.out.println(x.getCode());
                         // kho co 200 cai
                         stockData = x.getStock();
                         break;
                     }
                 }
+                // số lượng còn lại của product này
                 Long finalStock = stockData - stockOrder;
-                Long iddd = stProductId;
-                // System.out.println(finalStock);
+                Long productId = stProductId;
                 if (finalStock <= 0) {
-                    proList.removeIf(x -> x.getCode().equals(iddd));
-                    // handleProduct.delete(AllFile.fileProductTxt, Optional.of(stProductId));
+                    // xử lý xóa cái product và cập nhật
+                    proList.removeIf(x -> x.getCode().equals(productId));
                     handleProduct.writeFile(AllFile.fileProductTxt, proList);
+                    // xóa cái cart có chưa product này
+                    listCart.removeIf(x -> x.getProductId().equals(productId));
+
                 } else {
                     for (Product x : proList) {
                         if (x.getCode().equals(stProductId)) {
                             x.setStock(finalStock);
                         }
                     }
+                    // cập nhật lại product
                     handleProduct.writeFile(AllFile.fileProductTxt, proList);
                 }
-
+                // cập nhật lại hóa đơn user
                 handleUser.writeFile(AllFile.fileOrderUserTxt, orderUserList);
-                // handle.deleteIt(AllFile.fileOrderTxt, Optional.of(stId));
+                // xóa
                 handle.delete(AllFile.fileOrderTxt, Optional.of(stId));
 
             } else {
@@ -107,10 +108,10 @@ public class ViewOrder {
                     }
                 }
                 handleUser.writeFile(AllFile.fileOrderUserTxt, orderUserList);
-                // handle.deleteIt(AllFile.fileOrderTxt, Optional.of(stId));
                 handle.delete(AllFile.fileOrderTxt, Optional.of(stId));
             }
-            System.out.println(BOLD + GREEN + " Order successful..." + RESET);
+
+            System.out.println(BOLD + GREEN + " Confirm successful..." + RESET);
 
         } else {
             System.out.println(BOLD + RED + " Order id with " + id + " is incorrect, please re-enter" + RESET);

@@ -38,8 +38,8 @@ public class OrderUserImpl extends Order {
     }
 
     public OrderUserImpl(Long id, String nameProduct, String userName, String address, String phone, Long userId,
-            Long price, int status, Long qty) {
-        super(id, userName, address, phone, price);
+            Long price, int status, Long qty, Long product_id) {
+        super(id, userName, address, phone, price, product_id);
         this.nameProduct = nameProduct;
         this.userId = userId;
         this.status = status;
@@ -72,7 +72,8 @@ public class OrderUserImpl extends Order {
 
     public String toStringFormatted() {
         return super.getId() + "?" + this.nameProduct + "?" + super.getName() + "?" + super.getAddress() + "?"
-                + super.getPhone() + "?" + this.userId + "?" + super.getPrice() + "?" + this.status + "?" + this.qty;
+                + super.getPhone() + "?" + this.userId + "?" + super.getPrice() + "?" + this.status + "?" + this.qty
+                + "?" + super.getProduct_id();
     }
 
     @Override

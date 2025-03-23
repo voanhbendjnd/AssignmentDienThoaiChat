@@ -35,7 +35,9 @@ public class HandleOrderUser implements Handle<OrderUserImpl> {
                 Long price = Long.parseLong(orders[6]);
                 int status = Integer.parseInt(orders[7]);
                 Long qty = Long.parseLong(orders[8]);
-                orderList.add(new OrderUserImpl(id, nameP, name, address, phone, userId, price, status, qty));
+                Long product_id = Long.parseLong(orders[9]);
+                orderList.add(
+                        new OrderUserImpl(id, nameP, name, address, phone, userId, price, status, qty, product_id));
 
             }
             sc.close();

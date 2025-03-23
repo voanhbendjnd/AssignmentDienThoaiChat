@@ -12,7 +12,6 @@ import utils.FormatData;
 
 public class OrderImpl extends Order {
     private Long user_id;
-    private Long product_id;
     private Long order_id;
     // color
     public static final String RESET = "\u001B[0m"; // Reset về mặc định
@@ -29,9 +28,8 @@ public class OrderImpl extends Order {
 
     public OrderImpl(Long id, Long user_id, Long product_id, String name, String address, String phone, Long price,
             Long order_id) {
-        super(id, name, address, phone, price);
+        super(id, name, address, phone, price, product_id);
         this.user_id = user_id;
-        this.product_id = product_id;
         this.order_id = order_id;
     }
 
@@ -47,17 +45,9 @@ public class OrderImpl extends Order {
         this.order_id = order_id;
     }
 
-    public Long getProduct_id() {
-        return product_id;
-    }
-
-    public void setProduct_id(Long product_id) {
-        this.product_id = product_id;
-    }
-
     // định dạng format để đọc dữ liệu trong file
     public String toStringFormatted() {
-        return super.getId() + "?" + this.user_id + "?" + this.product_id + "?" + super.getName() + "?"
+        return super.getId() + "?" + this.user_id + "?" + super.getProduct_id() + "?" + super.getName() + "?"
                 + super.getAddress() + "?"
                 + super.getPhone() + "?" + super.getPrice() + "?" + this.order_id;
     }
@@ -69,7 +59,7 @@ public class OrderImpl extends Order {
         return String.format("| %s%s%-5d%s | %s%-7d%s | %s%-10d%s | %s%-20s%s | %s%-60s%s | %s%-15s%s | %s%-20s%s |",
                 BOLD, YELLOW, super.getId(), RESET,
                 GREEN, this.user_id, RESET,
-                RED, this.product_id, RESET,
+                RED, super.getProduct_id(), RESET,
                 BLUE, super.getName(), RESET,
                 YELLOW, super.getAddress(), RESET,
                 CYAN, super.getPhone(), RESET,
