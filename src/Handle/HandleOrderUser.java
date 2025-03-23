@@ -12,8 +12,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
-
-import domain.entity.Cart;
 import domain.entity.OrderUserImpl;
 import setupFile.AllFile;
 
@@ -42,8 +40,7 @@ public class HandleOrderUser implements Handle<OrderUserImpl> {
             sc.close();
 
         } catch (Exception ex) {
-            // đọc không được sẽ quăng ra lỗi
-            System.out.println("Error reading file: " + ex.getMessage());
+
         }
         return orderList;
     }

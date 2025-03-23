@@ -9,9 +9,11 @@ import java.util.Scanner;
 import domain.entity.Cart;
 import domain.entity.OrderUserImpl;
 import domain.entity.OrderImpl;
+import domain.entity.Product;
 import handle.HandleCart;
 import handle.HandleOrder;
 import handle.HandleOrderUser;
+import handle.HandleProduct;
 import setupFile.AllFile;
 import utils.FormatData;
 
@@ -20,6 +22,7 @@ import utils.FormatData;
  * @author Vo Anh Ben - CE190709
  */
 public class OpenCart {
+
     public static final String RESET = "\u001B[0m";
     public static final String GREEN = "\u001B[32m";
     public static final String RED = "\u001B[31m";
@@ -87,6 +90,7 @@ public class OpenCart {
         HandleCart handleCart = new HandleCart();
         List<Cart> list = handleCart.read(AllFile.fileCartTxt);
         List<Cart> cartList = new ArrayList<>();
+        List<Product> proList = new HandleProduct().read(AllFile.fileProductTxt);
         for (Cart x : list) {
             if (x.getUserId().equals(userId)) {
                 cartList.add(x);
@@ -98,74 +102,99 @@ public class OpenCart {
             char q = sc.nextLine().charAt(0);
             if (q == 'y' || q == 'Y') {
                 try {
-                    System.out.print(BOLD + BLUE + " Id of product: " + RESET);
-                    Long cartIdCurrent = Long.parseLong(sc.nextLine());
+                    Long cartIdCurrent;
+                    while (true) {
+                        System.out.print(BOLD + BLUE + " Id of product: " + RESET);
+                        boolean checkI = false;
+                        cartIdCurrent = Long.parseLong(sc.nextLine());
+                        for (Cart x : cartList) {
+                            if (x.getId().equals(cartIdCurrent)) {
+                                checkI = true;
+                                break;
+                            }
+                        }
+                        if (checkI) {
+                            break;
+                        }
+                        System.out.println(BOLD + RED + " Id product not exists cart..." + RESET);
+
+                    }
                     String name = "";
                     Long price = null;
                     Long qty = null;
+//                    boolean checkIdProduct = false;
                     for (Cart x : cartList) {
                         if (x.getId().equals(cartIdCurrent)) {
                             name += x.getName();
                             price = x.getPrice();
                             qty = x.getQty();
+//                            checkIdProduct = true;
                         }
                     }
 
-                    System.out.print(BOLD + CYAN + " Current stock product: " + RESET + BOLD + qty);
-                    System.out.print(BOLD + YELLOW + " Keep the current quantity?(y/n): " + RESET);
-                    char qq = sc.nextLine().charAt(0);
-                    if (qq == 'y') {
-                        System.out.println(BLUE + " Product selected (ID = " + cartIdCurrent + ")" + RESET);
-                        System.out.println(YELLOW + "---------------------------------------" + RESET);
-                        System.out.println(BOLD + " Name: " + name + RESET);
-                        System.out.println(BOLD + " Price: " + new FormatData().formatPrice(price) + RESET);
-                        System.out.println(BOLD + " Quantity: " + qty + RESET);
-                        System.out.println(BOLD + " Total: " + new FormatData().formatPrice(price * qty) + RESET);
-                        System.out.println(YELLOW + "---------------------------------------" + RESET);
-                        System.out.print(BOLD + YELLOW + "Buy(y/n)?: " + RESET);
-                        char qqq = sc.nextLine().charAt(0);
-                        if (qqq == 'y') {
+//                    if (checkIdProduct) { //1
+                        System.out.println(BOLD + CYAN + " Current stock product: " + RESET + BOLD + qty);
+                        System.out.print(BOLD + YELLOW + " Keep the current quantity?(y/n): " + RESET);
+                        char qq = sc.nextLine().charAt(0);
+                        if (qq == 'y') {
+                            System.out.println(BLUE + " Product selected (ID = " + cartIdCurrent + ")" + RESET);
+                            System.out.println(YELLOW + "---------------------------------------" + RESET);
+                            System.out.println(BOLD + " Name: " + name + RESET);
+                            System.out.println(BOLD + " Price: " + new FormatData().formatPrice(price) + RESET);
+                            System.out.println(BOLD + " Quantity: " + qty + RESET);
+                            System.out.println(BOLD + " Total: " + new FormatData().formatPrice(price * qty) + RESET);
+                            System.out.println(YELLOW + "---------------------------------------" + RESET);
+                            System.out.print(BOLD + YELLOW + "Buy(y/n)?: " + RESET);
+                            char qqq = sc.nextLine().charAt(0);
+                            if (qqq == 'y') {
 
-                            // new HandleCart().deleteIt(AllFile.fileCartTxt, Optional.of(cartIdCurrent));
-                            handleCart.delete(AllFile.fileCartTxt, Optional.of(cartIdCurrent));
-                            inforAndHandleOrder(userId, cartIdCurrent, name, price * qty);
-                        }
-                    } else {
-                        System.out.print(BOLD + GREEN + " Please enter quantity: " + RESET);
-                        Long quantity = Long.parseLong(sc.nextLine());
-                        System.out.println(BLUE + " Product selected (ID = " + cartIdCurrent + ")" + RESET);
-                        System.out.println(YELLOW + "---------------------------------------" + RESET);
-                        System.out.println(BOLD + " Name: " + name + RESET);
-                        System.out.println(BOLD + " Price: " + new FormatData().formatPrice(price) + RESET);
-                        System.out.println(BOLD + " Quantity: " + quantity + RESET);
-                        System.out.println(BOLD + " Total: " + new FormatData().formatPrice(price * quantity) + RESET);
-                        System.out.println(YELLOW + "---------------------------------------" + RESET);
-                        System.out.print(BOLD + YELLOW + " Buy(y/n)?: " + RESET);
-                        char qqq = sc.nextLine().charAt(0);
-                        if (qqq == 'y') {
-                            // xử lý quantity trong giỏ
-                            // nếu mua hết thì xóa luôn cái sản phẩm đó trong giỏ
-                            if (qty - quantity <= 0) {
-                                handleCart.delete(AllFile.fileCartTxt, Optional.of(cartIdCurrent));
                                 // new HandleCart().deleteIt(AllFile.fileCartTxt, Optional.of(cartIdCurrent));
-                                inforAndHandleOrder(userId, cartIdCurrent, name, price * quantity);
+                                handleCart.delete(AllFile.fileCartTxt, Optional.of(cartIdCurrent));
+                                inforAndHandleOrder(userId, cartIdCurrent, name, price * qty);
+                            }
+                        } else {
+                            System.out.print(BOLD + GREEN + " Please enter quantity: " + RESET);
+                            Long quantity = Long.parseLong(sc.nextLine());
+                            System.out.println(BLUE + " Product selected (ID = " + cartIdCurrent + ")" + RESET);
+                            System.out.println(YELLOW + "---------------------------------------" + RESET);
+                            System.out.println(BOLD + " Name: " + name + RESET);
+                            System.out.println(BOLD + " Price: " + new FormatData().formatPrice(price) + RESET);
+                            System.out.println(BOLD + " Quantity: " + quantity + RESET);
+                            System.out.println(BOLD + " Total: " + new FormatData().formatPrice(price * quantity) + RESET);
+                            System.out.println(YELLOW + "---------------------------------------" + RESET);
+                            System.out.print(BOLD + YELLOW + " Buy(y/n)?: " + RESET);
+                            char qqq = sc.nextLine().charAt(0);
+                            if (qqq == 'y') {
+                                // xử lý quantity trong giỏ
+                                // nếu mua hết thì xóa luôn cái sản phẩm đó trong giỏ
+                                if (qty - quantity <= 0) {
+                                    handleCart.delete(AllFile.fileCartTxt, Optional.of(cartIdCurrent));
+                                    // new HandleCart().deleteIt(AllFile.fileCartTxt, Optional.of(cartIdCurrent));
+                                    inforAndHandleOrder(userId, cartIdCurrent, name, price * quantity);
 
-                            } else {
-                                // chỉ cần giảm số lượng
-                                // xóa và thêm dữ liệu mới từ dữ liệu cũ cập nhật qty
-                                for (Cart x : list) {
-                                    if (x.getId().equals(cartIdCurrent)) {
-                                        x.setQty(qty - quantity);
-                                        x.setTotal((qty - quantity) * price);
+                                } else {
+                                    // chỉ cần giảm số lượng
+                                    // xóa và thêm dữ liệu mới từ dữ liệu cũ cập nhật qty
+                                    for (Cart x : list) {
+                                        if (x.getId().equals(cartIdCurrent)) {
+                                            x.setQty(qty - quantity);
+                                            x.setTotal((qty - quantity) * price);
+                                        }
                                     }
+                                    // list.add(new Cart(cartIdCurrent, userId, name, price, qty - quantity,
+                                    // (qty - quantity) * price, productId));
+                                    handleCart.writeFile(AllFile.fileCartTxt, list);
+                                    inforAndHandleOrder(userId, cartIdCurrent, name, price * quantity);
+                                    
+                                    
                                 }
-                                // list.add(new Cart(cartIdCurrent, userId, name, price, qty - quantity,
-                                // (qty - quantity) * price, productId));
-                                handleCart.writeFile(AllFile.fileCartTxt, list);
-                                inforAndHandleOrder(userId, cartIdCurrent, name, price * quantity);
                             }
                         }
-                    }
+//                    } else {
+//                        System.out.println(BOLD + RED + " Id product not exists cart..." + RESET);
+//
+//                    }
+
                 } catch (Exception ex) {
                     System.out.println(ex);
                 }

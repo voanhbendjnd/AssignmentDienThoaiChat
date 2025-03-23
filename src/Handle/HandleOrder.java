@@ -41,8 +41,7 @@ public class HandleOrder implements Handle<OrderImpl> {
             sc.close();
 
         } catch (Exception ex) {
-            // đọc không được sẽ quăng ra lỗi
-            System.out.println("Error reading file: " + ex.getMessage());
+
         }
         return orderList;
     }

@@ -40,8 +40,7 @@ public class HandleProduct implements Handle<Product> {
             sc.close();
 
         } catch (Exception ex) {
-            // lỗi trong quá trình đọc
-//            System.out.println("Error reading file: " + ex.getMessage());
+
         }
         return productsList;
     }

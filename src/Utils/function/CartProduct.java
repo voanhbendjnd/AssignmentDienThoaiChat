@@ -16,6 +16,7 @@ import setupFile.AllFile;
 import utils.FormatData;
 
 public class CartProduct {
+    public static Long currentSt;
     public static final String RESET = "\u001B[0m";
     public static final String GREEN = "\u001B[32m";
     public static final String RED = "\u001B[31m";
@@ -117,18 +118,19 @@ public class CartProduct {
 
             // Cập nhật lại stock
             Long currentStock = stock - st;
+            currentSt = currentStock;
             if (currentStock == 0) {
 
                 handleCart.delete(AllFile.fileProductTxt, Optional.of(code));
 //                new HandleProduct().deleteProduct(AllFile.fileProductTxt, code); // Xóa sản phẩm khi hết hàng
             } else {
-                for (Product x : proList) {
-                    if (x.getCode().equals(code)) {
-                        x.setStock(currentStock);
-                        break;
-                    }
-                }
-                new HandleProduct().writeFile(AllFile.fileProductTxt, proList);
+//                for (Product x : proList) {
+//                    if (x.getCode().equals(code)) {
+//                        x.setStock(currentStock);
+//                        break;
+//                    }
+//                }
+//                new HandleProduct().writeFile(AllFile.fileProductTxt, proList);
             }
 
             System.out.println(BOLD + BLUE + " Order placed successfully!" + RESET);
