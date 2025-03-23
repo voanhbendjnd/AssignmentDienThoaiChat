@@ -11,7 +11,7 @@ import utils.constant.TargetEnum;
 import utils.error.Validation;
 
 /**
- * @author Vo Anh Ben - CE190709
+ * @author Duong Thien Nhan - CE190741
  */
 
 public class AddProduct {
@@ -157,7 +157,6 @@ public class AddProduct {
             System.out.println(BOLD + CYAN + " 2. Return to main menu" + RESET);
             System.out.println(BOLD + CYAN + "═════════════════════════════════════" + RESET);
             System.out.print(BOLD + YELLOW + " Your choice: " + RESET);
-
             int choice;
             try {
                 choice = Integer.parseInt(sc.nextLine());
@@ -180,7 +179,6 @@ public class AddProduct {
                 System.out.println(RED + "Invalid input!! Please enter !!!!" + RESET);
             }
         }
-        // }
 
         System.out.println(BOLD + CYAN + "══════════════════════════════" + RESET);
         System.out.println(BOLD + CYAN + "     PRODUCTS ADDED/UPDATED   " + RESET);

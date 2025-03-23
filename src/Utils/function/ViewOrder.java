@@ -50,6 +50,13 @@ public class ViewOrder {
                 break;
             }
         }
+        Long stockOrder = null;
+        for (OrderUserImpl x : orderUserList) {
+            if (x.getId().equals(Long.parseLong(id))) {
+                stockOrder = x.getQty();
+                break;
+            }
+        }
         if (check) {
             if (status == 3) {
                 for (OrderUserImpl x : orderUserList) {
@@ -67,9 +74,26 @@ public class ViewOrder {
                 Long stockData = null;
                 for (Product x : proList) {
                     if (x.getCode().equals(stProductId)) {
+                        // System.out.println(x.getCode());
                         // kho co 200 cai
                         stockData = x.getStock();
+                        break;
                     }
+                }
+                Long finalStock = stockData - stockOrder;
+                Long iddd = stProductId;
+                // System.out.println(finalStock);
+                if (finalStock <= 0) {
+                    proList.removeIf(x -> x.getCode().equals(iddd));
+                    // handleProduct.delete(AllFile.fileProductTxt, Optional.of(stProductId));
+                    handleProduct.writeFile(AllFile.fileProductTxt, proList);
+                } else {
+                    for (Product x : proList) {
+                        if (x.getCode().equals(stProductId)) {
+                            x.setStock(finalStock);
+                        }
+                    }
+                    handleProduct.writeFile(AllFile.fileProductTxt, proList);
                 }
 
                 handleUser.writeFile(AllFile.fileOrderUserTxt, orderUserList);

@@ -14,7 +14,6 @@ public class OrderImpl extends Order {
     private Long user_id;
     private Long product_id;
     private Long order_id;
-
     // color
     public static final String RESET = "\u001B[0m"; // Reset về mặc định
     public static final String RED = "\u001B[31m"; // Màu đỏ
@@ -84,7 +83,7 @@ public class OrderImpl extends Order {
         sb.append(
                 "+-------+---------+------------+----------------------+--------------------------------------------------------------+-----------------+----------------------+\n");
         sb.append(
-                "| ID    | UserID  | OrderID    | Name                 | Address                                                      | Phone           |    Amount            |\n");
+                "| ID    | UserID  | ProductID  | Name                 | Address                                                      | Phone           |    Amount            |\n");
         sb.append(
                 "+-------+---------+------------+----------------------+--------------------------------------------------------------+-----------------+----------------------+\n");
         for (OrderImpl order : ordersList) {

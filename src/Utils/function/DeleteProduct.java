@@ -107,7 +107,7 @@ public class DeleteProduct {
                 if (check) {
                     proList.removeIf(x -> x.getCode().equals(Long.parseLong(id)));
                     handle.writeFile(AllFile.fileProductTxt, proList);
-                    System.out.print(BOLD + GREEN + " Delete product with " + productId + " successful!" + RESET);
+                    System.out.println(BOLD + GREEN + " Delete product with " + productId + " successful!" + RESET);
 
                 } else {
                     System.out.println(RED + " Product with " + productId + " not found!" + RESET);

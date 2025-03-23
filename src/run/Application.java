@@ -11,7 +11,7 @@ import utils.AnimationOpeningAndEnding;
  */
 public class Application {
     public static void main(String[] args) throws InterruptedException {
-        // AnimationOpeningAndEnding.MovieOpening();
+        AnimationOpeningAndEnding.MovieOpening();
         new InitializeSuperAdmin().init();
         new MenuSystem().getMenuNotLogin();
 
