@@ -1,25 +1,27 @@
-29?Vivo X80 Pro?Vivo?CAMERA_VIDEO?22000000?Zeiss Lens, Snapdragon 8 Gen 1, 5000mAh?84
-30?Nokia XR20?Nokia?WORK_STUDY?11000000?Military Grade Durability, 5G?50
-31?Realme GT 2 Pro?Realme?GAMING?16000000?Snapdragon 8 Gen 1, 120Hz LTPO Display?100
-32?Honor Magic 4 Pro?Honor?CAMERA_VIDEO?23000000?Snapdragon 8 Gen 1, 100W charging, 50MP?60
-33?iPhone 13?Apple?WORK_STUDY?21000000?A15 Bionic, Super Retina XDR, 128GB?89
-34?Samsung Galaxy Z Fold 4?Samsung?WORK_STUDY?40000000?Foldable Display, Snapdragon 8+ Gen 1?28
-35?Xiaomi Redmi Note 11?Xiaomi?THIN_LIGHT?7000000?Snapdragon 680, AMOLED 90Hz, 5000mAh?200
-36?Asus ROG Phone 6?Asus?GAMING?25000000?Snapdragon 8+ Gen 1, 165Hz, 6000mAh?70
-37?Samsung Galaxy A73?Samsung?THIN_LIGHT?12000000?Snapdragon 778G, 108MP Camera, 5000mAh?150
-38?iPhone SE 2022?Apple?THIN_LIGHT?13000000?A15 Bionic, 4.7-inch, Touch ID?119
-39?Oppo Reno8 Pro?Oppo?CAMERA_VIDEO?14000000?Dimensity 8100, 80W Charging, 50MP?109
-40?Vivo V25 Pro?Vivo?CAMERA_VIDEO?11000000?64MP OIS, Dimensity 1300, 66W Charge?130
-41?Realme 9 Pro+?Realme?THIN_LIGHT?9000000?Dimensity 920, Sony IMX766, 60W Charge?140
-42?Honor X9?Honor?WORK_STUDY?8000000?Snapdragon 695, 120Hz, 66W Charging?160
-43?iPhone 12 Pro?Apple?CAMERA_VIDEO?25000000?A14 Bionic, LiDAR, Ceramic Shield?30
-44?Samsung Galaxy M52?Samsung?WORK_STUDY?8500000?Snapdragon 778G, 5000mAh, 120Hz?190
-45?Xiaomi Black Shark 5 Pro?Xiaomi?GAMING?21000000?Snapdragon 8 Gen 1, 144Hz OLED, 120W?60
-46?Oppo A96?Oppo?WORK_STUDY?6000000?Snapdragon 680, 5000mAh, 33W Charge?250
-47?Vivo Y76 5G?Vivo?THIN_LIGHT?7500000?Dimensity 700, 50MP, 44W Fast Charge?180
-48?Nokia G50?Nokia?WORK_STUDY?7000000?Snapdragon 480, 5000mAh, 5G?140
-49?Realme Narzo 50A?Realme?GAMING?5000000?Helio G85, 6000mAh, 50MP?210
-50?Honor 70?Honor?CAMERA_VIDEO?13000000?Snapdragon 778G+, 54MP Sony IMX800, 66W?90
-51?Samsung Galaxy M51?Samsung?BATTERY?9000000?Snapdragon 730G, 7000mAh, 25W Fast Charge?180
-52?Xiaomi Redmi Note 12 Pro?Xiaomi?BATTERY?8500000?Dimensity 1080, 5000mAh, 67W Fast Charge?200
-53?Realme 10 Pro+?Realme?BATTERY?9500000?Dimensity 920, 5000mAh, 67W Charging?150
+29?Vivo X80 Pro?VIVO?CAMERA_VIDEO?22000000?Zeiss Lens, Snapdragon 8 Gen 1, 5000mAh?84
+30?Nokia XR20?NOKIA?WORK_STUDY?11000000?Military Grade Durability, 5G?50
+31?Realme GT 2 Pro?REALME?GAMING?16000000?Snapdragon 8 Gen 1, 120Hz LTPO Display?100
+32?Honor Magic 4 Pro?HONOR?CAMERA_VIDEO?23000000?Snapdragon 8 Gen 1, 100W charging, 50MP?60
+33?iPhone 13?APPLE?WORK_STUDY?21000000?A15 Bionic, Super Retina XDR, 128GB?89
+34?Samsung Galaxy Z Fold 4?SAMSUNG?WORK_STUDY?40000000?Foldable Display, Snapdragon 8+ Gen 1?28
+35?Xiaomi Redmi Note 11?XIAOMI?THIN_LIGHT?7000000?Snapdragon 680, AMOLED 90Hz, 5000mAh?200
+36?Asus ROG Phone 6?ASUS?GAMING?25000000?Snapdragon 8+ Gen 1, 165Hz, 6000mAh?70
+37?Samsung Galaxy A73?SAMSUNG?THIN_LIGHT?12000000?Snapdragon 778G, 108MP Camera, 5000mAh?150
+38?iPhone SE 2022?APPLE?THIN_LIGHT?13000000?A15 Bionic, 4.7-inch, Touch ID?119
+39?Oppo Reno8 Pro?OPPO?CAMERA_VIDEO?14000000?Dimensity 8100, 80W Charging, 50MP?109
+40?Vivo V25 Pro?VIVO?CAMERA_VIDEO?11000000?64MP OIS, Dimensity 1300, 66W Charge?130
+41?Realme 9 Pro+?REALME?THIN_LIGHT?9000000?Dimensity 920, Sony IMX766, 60W Charge?140
+42?Honor X9?HONOR?WORK_STUDY?8000000?Snapdragon 695, 120Hz, 66W Charging?160
+43?iPhone 12 Pro?APPLE?CAMERA_VIDEO?25000000?A14 Bionic, LiDAR, Ceramic Shield?30
+44?Samsung Galaxy M52?SAMSUNG?WORK_STUDY?8500000?Snapdragon 778G, 5000mAh, 120Hz?190
+45?Xiaomi Black Shark 5 Pro?XIAOMI?GAMING?21000000?Snapdragon 8 Gen 1, 144Hz OLED, 120W?60
+46?Oppo A96?OPPO?WORK_STUDY?6000000?Snapdragon 680, 5000mAh, 33W Charge?250
+47?Vivo Y76 5G?VIVO?THIN_LIGHT?7500000?Dimensity 700, 50MP, 44W Fast Charge?180
+48?Nokia G50?NOKIA?WORK_STUDY?7000000?Snapdragon 480, 5000mAh, 5G?140
+49?Realme Narzo 50A?REALME?GAMING?5000000?Helio G85, 6000mAh, 50MP?210
+50?Honor 70?HONOR?CAMERA_VIDEO?13000000?Snapdragon 778G+, 54MP Sony IMX800, 66W?90
+51?Samsung Galaxy M51?SAMSUNG?BATTERY?9000000?Snapdragon 730G, 7000mAh, 25W Fast Charge?180
+52?Xiaomi Redmi Note 12 Pro?XIAOMI?BATTERY?8500000?Dimensity 1080, 5000mAh, 67W Fast Charge?200
+53?Realme 10 Pro+?REALME?BATTERY?9500000?Dimensity 920, 5000mAh, 67W Charging?150
+54?Ipon XX?APPLE?CAMERA_VIDEO?9000000?Gold?76
+55?PonI?SAMSUNG?THIN_LIGHT?8000000?Black?78

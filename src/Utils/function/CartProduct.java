@@ -46,7 +46,6 @@ public class CartProduct {
         List<Product> proList = handleProduct.read(AllFile.fileProductTxt);
         for (Product x : proList) {
             if (x.getCode().equals(idProduct)) {
-                brand = x.getBrand();
                 name = x.getName();
                 desc = x.getDescription();
                 price = x.getPrice();

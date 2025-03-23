@@ -218,7 +218,7 @@ public class FindProduct {
             // có hãng không có tính năng
             if (checkFactory && !checkTarget) {
                 for (Product x : proList) {
-                    if (op.contains(x.getBrand().toLowerCase())) {
+                    if (op.contains(x.getFactory().name().toLowerCase())) {
                         proFind.add(x);
                     }
                 }
@@ -234,7 +234,7 @@ public class FindProduct {
             // có cả 22
             if (checkFactory && checkTarget) {
                 for (Product x : proList) {
-                    if (op.contains(x.getBrand().toLowerCase())
+                    if (op.contains(x.getFactory().name().toLowerCase())
                             && op.contains(x.getTarget().name())) {
                         proFind.add(x);
                     }
@@ -248,7 +248,7 @@ public class FindProduct {
                         for (String y : op) {
                             if (x.getTarget().name().equals(y)) {
                                 for (String z : op) {
-                                    if (x.getBrand().equalsIgnoreCase(z)) {
+                                    if (x.getFactory().name().equalsIgnoreCase(z)) {
                                         if (!proFind.contains(x)) {
                                             proFind.add(x);
                                         }
@@ -261,7 +261,7 @@ public class FindProduct {
             } else if (checkFactory && !checkTarget) {
                 for (Product x : proList) {
                     if (x.getPrice() >= min_value && x.getPrice() <= max_value) {
-                        if (op.contains(x.getBrand().toLowerCase())) {
+                        if (op.contains(x.getFactory().name().toLowerCase())) {
                             proFind.add(x);
                         }
                     }

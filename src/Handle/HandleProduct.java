@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 import domain.entity.Product;
+import utils.constant.FactoryEnum;
 import utils.constant.TargetEnum;
 
 public class HandleProduct implements Handle<Product> {
@@ -29,12 +30,12 @@ public class HandleProduct implements Handle<Product> {
                 String[] products = data.split("\\?");
                 Long codePhone = Long.parseLong(products[0]);
                 String name = products[1];
-                String brand = products[2];
+                FactoryEnum factory = FactoryEnum.valueOf(products[2]);
                 TargetEnum target = TargetEnum.valueOf(products[3]);
                 Long price = Long.parseLong(products[4]);
                 String description = products[5];
                 Long stock = Long.parseLong(products[6]);
-                productsList.add(new Product(codePhone, name, brand, target, price, description, stock));
+                productsList.add(new Product(codePhone, name, factory, target, price, description, stock));
 
             }
             sc.close();

@@ -7,13 +7,15 @@ package domain.entity;
 
 import java.util.List;
 import utils.FormatData;
+import utils.constant.FactoryEnum;
 import utils.constant.TargetEnum;
 
 public class Product {
     private Long id;
     private Long code;
     private String name;
-    private String brand;
+    // private String brand;
+    private FactoryEnum factory;
     private Long price;
     private String description;
     private Long stock;
@@ -31,11 +33,11 @@ public class Product {
     public Product() {
     }
 
-    public Product(Long code, String name, String brand, TargetEnum target, Long price, String description,
+    public Product(Long code, String name, FactoryEnum factory, TargetEnum target, Long price, String description,
             Long stock) {
         this.name = name;
         this.code = code;
-        this.brand = brand;
+        this.factory = factory;
         this.price = price;
         this.target = target;
         this.description = description;
@@ -64,14 +66,6 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
     }
 
     public Long getPrice() {
@@ -106,8 +100,16 @@ public class Product {
         this.stock = stock;
     }
 
+    public FactoryEnum getFactory() {
+        return factory;
+    }
+
+    public void setFactory(FactoryEnum factory) {
+        this.factory = factory;
+    }
+
     public String toStringFormatted() {
-        return this.code + "?" + this.name + "?" + this.brand + "?" + this.target + "?" + this.price + "?"
+        return this.code + "?" + this.name + "?" + this.factory + "?" + this.target + "?" + this.price + "?"
                 + this.description + "?"
                 + this.stock;
     }
@@ -117,7 +119,7 @@ public class Product {
         return String.format("| %s%-5d%s | %s%-26s%s | %s%-16s%s | %s%-23s%s | %s%-15s%s | %s%-80s%s | %s%-5d%s |",
                 BOLD, this.code, RESET,
                 GREEN, this.name, RESET,
-                BLUE, this.brand, RESET,
+                BLUE, this.factory, RESET,
                 CYAN, this.target, RESET,
                 RED, new FormatData().formatPrice(this.price), RESET,
                 YELLOW, this.description, RESET,

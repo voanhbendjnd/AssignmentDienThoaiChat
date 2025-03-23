@@ -7,6 +7,7 @@ import java.util.Scanner;
 import domain.entity.Product;
 import handle.HandleProduct;
 import setupFile.AllFile;
+import utils.constant.FactoryEnum;
 import utils.constant.TargetEnum;
 import utils.error.Validation;
 
@@ -34,8 +35,68 @@ public class AddProduct {
 
         String name = Validation.getNonEmptyString(BOLD + BLUE + " Name: " + RESET,
                 RED + " Product name cannot be empty !!! Please try again." + RESET);
-        String brand = Validation.getNonEmptyString(BOLD + BLUE + " Brand: " + RESET,
-                RED + " Product brand cannot be empty !!! Please try again." + RESET);
+        FactoryEnum factory = FactoryEnum.APPLE;
+        System.out.println(BOLD + YELLOW + " Factory " + RESET);
+        System.out.println(BLUE + "┌────────────────────────────────────────────┐" + RESET);
+        System.out.println(BLUE + "│ 1. Apple    │ 2. Samsung   │ 3. Xiaomi     │" + RESET);
+        System.out.println(BLUE + "│ 4. Asus     │ 5. Oppo      │ 6. Vivo       │" + RESET);
+        System.out.println(BLUE + "│ 7. Honor    │ 8. Nokia     │ 9. Realme     │" + RESET);
+        System.out.println(BLUE + "└────────────────────────────────────────────┘" + RESET);
+        int uu = -1;
+        while (true) {
+            try {
+                System.out.print(BOLD + BLUE + " Number for factory: " + RESET);
+                uu = sc.nextInt(); // Nhận số nguyên từ người dùng
+
+                if (uu >= 1 && uu <= 5) {
+                    break; // Thoát vòng lặp nếu nhập đúng
+                } else {
+                    System.out.println(RED + "Invalid factory. Please enter again (1-5): " + RESET);
+                }
+            } catch (Exception e) {
+                System.out.println(RED + "Invalid input! Please enter a number (1-5): " + RESET);
+                sc.nextLine(); // Xóa bộ đệm nhập để tránh lặp vô hạn
+            }
+        }
+        // Xử lý giá trị hợp lệ
+        switch (uu) {
+            case 1:
+                factory = FactoryEnum.APPLE;
+                break;
+            case 2:
+                factory = FactoryEnum.SAMSUNG;
+                break;
+            case 3:
+                factory = FactoryEnum.XIAOMI;
+
+                break;
+            case 4:
+                factory = FactoryEnum.ASUS;
+
+                break;
+            case 5:
+                factory = FactoryEnum.OPPO;
+
+                break;
+            case 6:
+                factory = FactoryEnum.VIVO;
+                break;
+            case 7:
+                factory = FactoryEnum.HONOR;
+                break;
+            case 8:
+                factory = FactoryEnum.NOKIA;
+
+                break;
+            case 9:
+                factory = FactoryEnum.REALME;
+
+                break;
+        }
+
+        // String factory = Validation.getNonEmptyString(BOLD + BLUE + " Factory: " +
+        // RESET,
+        // RED + " Product brand cannot be empty !!! Please try again." + RESET);
 
         System.out.println(BOLD + YELLOW + " Target: " + RESET);
         System.out.println(GREEN + " ┌────────────────────────────────────────────┐" + RESET);
@@ -99,7 +160,7 @@ public class AddProduct {
 
         for (Product x : data) {
             // trùng mô tả, tên và brand thì tính sản phẩm đó là 1
-            if (name.equalsIgnoreCase(x.getName()) && brand.equalsIgnoreCase(x.getBrand())
+            if (name.equalsIgnoreCase(x.getName()) && factory.equals(x.getFactory())
                     && ds.equalsIgnoreCase(x.getDescription()) && x.getPrice().equals(price)) {
                 System.out.print(BOLD + BLUE + " One or Many stock? (1/2): " + RESET);
                 int z = sc.nextInt();
@@ -142,7 +203,7 @@ public class AddProduct {
                 }
             }
 
-            Product pro = new Product(maxCode + 1, name, brand, target, price, ds, stock);
+            Product pro = new Product(maxCode + 1, name, factory, target, price, ds, stock);
             data.add(pro);
             reader.writeFile(AllFile.fileProductTxt, data);
             proListed.add(pro);
