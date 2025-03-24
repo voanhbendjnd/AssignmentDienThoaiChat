@@ -10,6 +10,13 @@ import domain.Order;
 import utils.FormatData;
 
 public class OrderUserImpl extends Order {
+    public static final String RESET = "\u001B[0m"; // Reset về mặc định
+    public static final String RED = "\u001B[31m"; // Màu đỏ
+    public static final String GREEN = "\u001B[32m"; // Màu xanh lá
+    public static final String YELLOW = "\u001B[33m";// Màu vàng
+    public static final String BLUE = "\u001B[34m"; // Màu xanh dương
+    public static final String CYAN = "\u001B[36m"; // Màu xanh biển
+    public static final String BOLD = "\u001B[1m"; // In đậm
     private String nameProduct;
     private Long qty;
     private Long userId;
@@ -25,13 +32,7 @@ public class OrderUserImpl extends Order {
     private int status;
 
     // color
-    public static final String RESET = "\u001B[0m"; // Reset về mặc định
-    public static final String RED = "\u001B[31m"; // Màu đỏ
-    public static final String GREEN = "\u001B[32m"; // Màu xanh lá
-    public static final String YELLOW = "\u001B[33m";// Màu vàng
-    public static final String BLUE = "\u001B[34m"; // Màu xanh dương
-    public static final String CYAN = "\u001B[36m"; // Màu xanh biển
-    public static final String BOLD = "\u001B[1m"; // In đậm
+    
 
     public Long getQty() {
         return qty;

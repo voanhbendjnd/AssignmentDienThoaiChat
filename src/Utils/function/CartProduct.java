@@ -33,13 +33,14 @@ public class CartProduct {
         HandleProduct handleProduct = new HandleProduct();
         HandleCart handleCart = new HandleCart();
         System.out.println(CYAN + "══════════════════════════════════════" + RESET);
-        System.out.print(BOLD + GREEN + "Please enter ID of the product you want to add to cart: " + RESET);
+        System.out.print(BOLD + GREEN + " Please enter ID of the product you want to add to cart: " + RESET);
         Long idProduct;
         try {
             idProduct = sc.nextLong();
             sc.nextLine(); // Đọc ký tự xuống dòng còn lại
         } catch (Exception e) {
-            System.out.println(RED + "Invalid product ID! Please enter a number." + RESET);
+            System.out.println(
+                    RED + BOLD + "ERROR" + RESET + BOLD + " Invalid product ID! Please enter a number." + RESET);
             sc.nextLine(); // Clear buffer
             return;
         }
@@ -55,7 +56,7 @@ public class CartProduct {
             }
         }
         if (!checkProduct) {
-            System.out.println(RED + "Product not found or out of stock!" + RESET);
+            System.out.println(RED + BOLD + "ERROR" + RESET + BOLD + " Product not found or out of stock!" + RESET);
             return;
         }
         System.out.println(BOLD + CYAN + " Current stock product: " + RESET + stock);
@@ -65,13 +66,16 @@ public class CartProduct {
             st = sc.nextLong();
             sc.nextLine(); // Đọc ký tự xuống dòng còn lại
         } catch (Exception e) {
-            System.out.println(RED + "Invalid quantity! Please enter a number." + RESET);
+            System.out
+                    .println(RED + BOLD + "ERROR" + RESET + BOLD + " Invalid quantity! Please enter a number." + RESET);
             sc.nextLine(); // Clear buffer
             return;
         }
         if (st <= 0 || st > stock) {
             System.out.println(
-                    RED + " The quantity of the product cannot be greater or less than the available stock." + RESET);
+                    RED + BOLD + "ERROR" + RESET + BOLD
+                            + " The quantity of the product cannot be greater or less than the available stock."
+                            + RESET);
             return;
         }
         System.out.println(BLUE + " Product selected (ID = " + idProduct + ")" + RESET);
@@ -102,7 +106,8 @@ public class CartProduct {
             handleCart.addNew(AllFile.fileCartTxt, newCart);
             System.out.println(BOLD + BLUE + " Order placed successfully!" + RESET);
         } catch (Exception e) {
-            System.out.println(RED + " An error occurred while processing your order: " + e.getMessage() + RESET);
+            System.out.println(RED + BOLD + "ERROR" + RESET + BOLD
+                    + " An error occurred while processing your order: " + e.getMessage() + RESET);
         }
     }
 }

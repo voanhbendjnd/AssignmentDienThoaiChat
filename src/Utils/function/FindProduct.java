@@ -194,15 +194,13 @@ public class FindProduct {
                     break;
                 case "21":
                     checkSortAs = true;
-
                     break;
                 case "22":
                     checkSortDes = true;
-
                     break;
-
                 default:
-                    // System.out.println("Code " + x + " does not exist.");
+                    System.out.println(BOLD + RED + " ERROR: " + RESET
+                            + BOLD + "Please enter number from 1 to 22!");
                     break;
             }
         }

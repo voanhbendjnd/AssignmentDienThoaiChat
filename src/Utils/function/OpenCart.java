@@ -162,14 +162,12 @@ public class OpenCart {
                     Long price = null;
                     Long qty = null;
                     Long productId = null;
-                    Long userID = null;
                     for (Cart x : cartList) {
                         if (x.getId().equals(cartIdCurrent)) {
                             name += x.getName();
                             price = x.getPrice();
                             qty = x.getQty();
                             productId = x.getProductId();
-                            userID = x.getUserId();
                         }
                     }
                     System.out.println(BOLD + CYAN + " Current stock product: " + RESET + BOLD + qty);
@@ -211,51 +209,59 @@ public class OpenCart {
                         checkCurrentStock = false;
                         System.out.print(BOLD + GREEN + " Please enter quantity: " + RESET);
                         Long quantity = Long.parseLong(sc.nextLine());
-                        System.out.println(BLUE + " Product selected (ID = " + cartIdCurrent + ")" + RESET);
-                        System.out.println(YELLOW + "---------------------------------------" + RESET);
-                        System.out.println(BOLD + " Name: " + name + RESET);
-                        System.out.println(BOLD + " Price: " + new FormatData().formatPrice(price) + RESET);
-                        System.out.println(BOLD + " Quantity: " + quantity + RESET);
-                        System.out.println(BOLD + " Total: " + new FormatData().formatPrice(price * quantity) + RESET);
-                        System.out.println(YELLOW + "---------------------------------------" + RESET);
-                        System.out.print(BOLD + YELLOW + " Buy(y/n)?: " + RESET);
-                        char qqq = sc.nextLine().charAt(0);
-                        if (qqq == 'y') {
-                            for (Product x : proList) {
-                                if (x.getCode().equals(productId)) {
-                                    if (x.getStock() >= quantity) {
-                                        checkCurrentStock = true;
-                                        break;
-                                    }
-                                }
-                            }
-                            if (checkCurrentStock) {
-                                if (qty - quantity <= 0) {
-                                    handleCart.delete(AllFile.fileCartTxt, Optional.of(cartIdCurrent));
-                                    inforAndHandleOrder(userId, productId, name, price * quantity, quantity);
-
-                                } else {
-                                    // chỉ cần giảm số lượng
-                                    // xóa và thêm dữ liệu mới từ dữ liệu cũ cập nhật qty
-                                    for (Cart x : list) {
-                                        if (x.getId().equals(cartIdCurrent)) {
-                                            x.setQty(qty - quantity);
-                                            x.setTotal((qty - quantity) * price);
+                        if (quantity >= 0) {
+                            System.out.println(BLUE + " Product selected (ID = " + cartIdCurrent + ")" + RESET);
+                            System.out.println(YELLOW + "---------------------------------------" + RESET);
+                            System.out.println(BOLD + " Name: " + name + RESET);
+                            System.out.println(BOLD + " Price: " + new FormatData().formatPrice(price) + RESET);
+                            System.out.println(BOLD + " Quantity: " + quantity + RESET);
+                            System.out.println(
+                                    BOLD + " Total: " + new FormatData().formatPrice(price * quantity) + RESET);
+                            System.out.println(YELLOW + "---------------------------------------" + RESET);
+                            System.out.print(BOLD + YELLOW + " Buy(y/n)?: " + RESET);
+                            char qqq = sc.nextLine().charAt(0);
+                            if (qqq == 'y') {
+                                for (Product x : proList) {
+                                    if (x.getCode().equals(productId)) {
+                                        if (x.getStock() >= quantity) {
+                                            checkCurrentStock = true;
+                                            break;
                                         }
                                     }
-                                    handleCart.writeFile(AllFile.fileCartTxt, list);
-                                    inforAndHandleOrder(userId, productId, name, price * quantity, quantity);
+                                }
+                                if (checkCurrentStock) {
+                                    if (qty - quantity <= 0) {
+                                        handleCart.delete(AllFile.fileCartTxt, Optional.of(cartIdCurrent));
+                                        inforAndHandleOrder(userId, productId, name, price * quantity, quantity);
+
+                                    } else {
+                                        // chỉ cần giảm số lượng
+                                        // xóa và thêm dữ liệu mới từ dữ liệu cũ cập nhật qty
+                                        for (Cart x : list) {
+                                            if (x.getId().equals(cartIdCurrent)) {
+                                                x.setQty(qty - quantity);
+                                                x.setTotal((qty - quantity) * price);
+                                            }
+                                        }
+                                        handleCart.writeFile(AllFile.fileCartTxt, list);
+                                        inforAndHandleOrder(userId, productId, name, price * quantity, quantity);
+
+                                    }
+                                } else {
+                                    System.out.println(BOLD + RED
+                                            + " The quantity of this product has been changed,\n please add the product back to your cart."
+                                            + RESET);
+                                    handleCart.delete(AllFile.fileCartTxt, Optional.of(cartIdCurrent));
 
                                 }
-                            } else {
-                                System.out.println(BOLD + RED
-                                        + " The quantity of this product has been changed,\n please add the product back to your cart."
-                                        + RESET);
-                                handleCart.delete(AllFile.fileCartTxt, Optional.of(cartIdCurrent));
 
                             }
-
+                        } else {
+                            System.out.println(BOLD + RED + " ERROR: "
+                                    + RESET + BOLD + "Please enter positive number!"
+                                    + RESET);
                         }
+
                     }
 
                 } catch (Exception ex) {

@@ -48,13 +48,13 @@ public class AddProduct {
                 System.out.print(BOLD + BLUE + " Number for factory: " + RESET);
                 uu = sc.nextInt(); // Nhận số nguyên từ người dùng
 
-                if (uu >= 1 && uu <= 5) {
+                if (uu >= 1 && uu <= 9) {
                     break; // Thoát vòng lặp nếu nhập đúng
                 } else {
-                    System.out.println(RED + "Invalid factory. Please enter again (1-5): " + RESET);
+                    System.out.println(BOLD + RED + "Invalid factory. Please enter again (1-9): " + RESET);
                 }
             } catch (Exception e) {
-                System.out.println(RED + "Invalid input! Please enter a number (1-5): " + RESET);
+                System.out.println(BOLD + RED + "Invalid input! Please enter a number (1-9): " + RESET);
                 sc.nextLine(); // Xóa bộ đệm nhập để tránh lặp vô hạn
             }
         }
@@ -94,10 +94,6 @@ public class AddProduct {
                 break;
         }
 
-        // String factory = Validation.getNonEmptyString(BOLD + BLUE + " Factory: " +
-        // RESET,
-        // RED + " Product brand cannot be empty !!! Please try again." + RESET);
-
         System.out.println(BOLD + YELLOW + " Target: " + RESET);
         System.out.println(GREEN + " ┌────────────────────────────────────────────┐" + RESET);
         System.out.println(GREEN + " │ 1. Gaming        │ 4. Camera, Video        │" + RESET);
@@ -116,10 +112,11 @@ public class AddProduct {
                 if (tt >= 1 && tt <= 5) {
                     break; // Thoát vòng lặp nếu nhập đúng
                 } else {
-                    System.out.println(RED + "Invalid target. Please enter again (1-5): " + RESET);
+                    System.out.println(BOLD + RED + " ERROR: " + RESET + BOLD
+                            + "Invalid target. Please enter again (1-5): " + RESET);
                 }
             } catch (Exception e) {
-                System.out.println(RED + "Invalid input! Please enter a number (1-5): " + RESET);
+                System.out.println(BOLD + RED + "Invalid input! Please enter a number (1-5): " + RESET);
                 sc.nextLine(); // Xóa bộ đệm nhập để tránh lặp vô hạn
             }
         }
@@ -168,13 +165,27 @@ public class AddProduct {
                     System.out.println(BOLD + GREEN + " Current stock: " + x.getStock() + RESET);
                     System.out.print(BOLD + BLUE + " Enter stock quantity to add: " + RESET);
                     Long stockAdd = sc.nextLong();
-                    x.setStock(x.getStock() + stockAdd);
+                    if (stockAdd > 0) {
+                        x.setStock(x.getStock() + stockAdd);
+                    } else {
+                        System.out.println(BOLD + RED + " ERROR: "
+                                + RESET + BOLD + "Please enter positive number!"
+                                + RESET);
+                    }
+
                     sc.nextLine();
                 } else {
                     System.out.println(BOLD + GREEN + " Current stock: " + x.getStock() + RESET);
                     System.out.print(BOLD + BLUE + " Enter new stock quantity: " + RESET);
                     Long stockChange = sc.nextLong();
-                    x.setStock(stockChange);
+                    if (stockChange > 0) {
+                        x.setStock(stockChange);
+                    } else {
+                        System.out.println(BOLD + RED + " ERROR: "
+                                + RESET + BOLD + "Please enter positive number!"
+                                + RESET);
+                    }
+
                     sc.nextLine();
                 }
                 reader.writeFile(AllFile.fileAccountTxt, data);
@@ -225,7 +236,7 @@ public class AddProduct {
                     addNewProduct();
                     break;
                 } else if (choice == 2) {
-                    System.out.print(RED + "The program is returning to menu" + RESET);
+                    System.out.print(BOLD + GREEN + "The program is returning to menu" + RESET);
                     for (int i = 0; i < 3; i++) {
                         System.out.print(RED + "." + RESET);
                         Thread.sleep(700);
