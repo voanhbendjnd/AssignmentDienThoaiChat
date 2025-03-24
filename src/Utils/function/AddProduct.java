@@ -46,16 +46,19 @@ public class AddProduct {
         while (true) {
             try {
                 System.out.print(BOLD + BLUE + " Number for factory: " + RESET);
-                uu = sc.nextInt(); // Nhận số nguyên từ người dùng
-
+                String input = sc.nextLine().trim(); // Nhận toàn bộ dòng và xóa khoảng trắng
+                if (input.isEmpty()) {
+                    System.out.println(BOLD + RED + "Input cannot be empty! Please enter a number (1-9): " + RESET);
+                    continue;
+                }
+                uu = Integer.parseInt(input); // Chuyển chuỗi sang số nguyên
                 if (uu >= 1 && uu <= 9) {
-                    break; // Thoát vòng lặp nếu nhập đúng
+                    break; // Nhập hợp lệ, thoát vòng lặp
                 } else {
                     System.out.println(BOLD + RED + "Invalid factory. Please enter again (1-9): " + RESET);
                 }
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
                 System.out.println(BOLD + RED + "Invalid input! Please enter a number (1-9): " + RESET);
-                sc.nextLine(); // Xóa bộ đệm nhập để tránh lặp vô hạn
             }
         }
         // Xử lý giá trị hợp lệ
@@ -68,15 +71,12 @@ public class AddProduct {
                 break;
             case 3:
                 factory = FactoryEnum.XIAOMI;
-
                 break;
             case 4:
                 factory = FactoryEnum.ASUS;
-
                 break;
             case 5:
                 factory = FactoryEnum.OPPO;
-
                 break;
             case 6:
                 factory = FactoryEnum.VIVO;
@@ -86,41 +86,41 @@ public class AddProduct {
                 break;
             case 8:
                 factory = FactoryEnum.NOKIA;
-
                 break;
             case 9:
                 factory = FactoryEnum.REALME;
-
                 break;
         }
-
         System.out.println(BOLD + YELLOW + " Target: " + RESET);
         System.out.println(GREEN + " ┌────────────────────────────────────────────┐" + RESET);
         System.out.println(GREEN + " │ 1. Gaming        │ 4. Camera, Video        │" + RESET);
         System.out.println(GREEN + " │ 2. Thin & Light  │ 5. Battery              │" + RESET);
         System.out.println(GREEN + " │ 3. Work, Study   │                         │" + RESET);
         System.out.println(GREEN + " └────────────────────────────────────────────┘" + RESET);
-
         int tt = -1; // Giá trị mặc định ngoài phạm vi hợp lệ
         TargetEnum target = TargetEnum.GAMING;
-
         while (true) {
             try {
                 System.out.print(BOLD + BLUE + " Number for target: " + RESET);
-                tt = sc.nextInt(); // Nhận số nguyên từ người dùng
+                String input = sc.nextLine().trim(); // Nhận toàn bộ dòng và xóa khoảng trắng
+
+                if (input.isEmpty()) {
+                    System.out.println(BOLD + RED + "Input cannot be empty! Please enter a number (1-5): " + RESET);
+                    continue;
+                }
+
+                tt = Integer.parseInt(input); // Chuyển chuỗi sang số nguyên
 
                 if (tt >= 1 && tt <= 5) {
-                    break; // Thoát vòng lặp nếu nhập đúng
+                    break; // Nhập hợp lệ, thoát vòng lặp
                 } else {
-                    System.out.println(BOLD + RED + " ERROR: " + RESET + BOLD
+                    System.out.println(BOLD + RED + "ERROR: " + RESET + BOLD + RED
                             + "Invalid target. Please enter again (1-5): " + RESET);
                 }
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
                 System.out.println(BOLD + RED + "Invalid input! Please enter a number (1-5): " + RESET);
-                sc.nextLine(); // Xóa bộ đệm nhập để tránh lặp vô hạn
             }
         }
-
         // Xử lý giá trị hợp lệ
         switch (tt) {
             case 1:
@@ -139,7 +139,6 @@ public class AddProduct {
                 target = TargetEnum.BATTERY;
                 break;
         }
-
         Long price = Validation.getPositiveLong(BOLD + BLUE + " Price: " + RESET,
                 RED + " Price must be greater than 0! Please enter again." + RESET);
         String ds = Validation.getNonEmptyString(BOLD + BLUE + " Description: " + RESET,
@@ -154,7 +153,6 @@ public class AddProduct {
                 maxCode = x.getCode();
             }
         }
-
         for (Product x : data) {
             // trùng mô tả, tên và brand thì tính sản phẩm đó là 1
             if (name.equalsIgnoreCase(x.getName()) && factory.equals(x.getFactory())
@@ -185,23 +183,19 @@ public class AddProduct {
                                 + RESET + BOLD + "Please enter positive number!"
                                 + RESET);
                     }
-
                     sc.nextLine();
                 }
-                reader.writeFile(AllFile.fileAccountTxt, data);
+                reader.writeFile(AllFile.fileProductTxt, data);
                 proListed.add(x);
                 check = true;
-
                 System.out.println(BOLD + GREEN + " Product updated successfully!" + RESET);
             }
         }
-
         if (!check) {
 
             Long stock = null;
             while (true) {
                 try {
-                    sc.nextLine();
                     System.out.print(BOLD + BLUE + " Stock: " + RESET);
                     stock = Long.parseLong(sc.nextLine().trim());
                     if (stock < 0) {
@@ -213,7 +207,6 @@ public class AddProduct {
                     System.out.println(BOLD + RED + " Invalid input! Price must be a number greater than 0!!" + RESET);
                 }
             }
-
             Product pro = new Product(maxCode + 1, name, factory, target, price, ds, stock);
             data.add(pro);
             reader.writeFile(AllFile.fileProductTxt, data);
@@ -221,7 +214,6 @@ public class AddProduct {
 
             System.out.println(GREEN + " Product added successfully!" + RESET);
         }
-
         while (true) {
             System.out.println(BOLD + CYAN + "═════════════════════════════════════" + RESET);
             System.out.println(BOLD + CYAN + " Do you want to continue or go back? " + RESET);
@@ -238,7 +230,7 @@ public class AddProduct {
                 } else if (choice == 2) {
                     System.out.print(BOLD + GREEN + "The program is returning to menu" + RESET);
                     for (int i = 0; i < 3; i++) {
-                        System.out.print(RED + "." + RESET);
+                        System.out.print(GREEN + "." + RESET);
                         Thread.sleep(700);
                     }
                     System.out.println();
@@ -251,7 +243,6 @@ public class AddProduct {
                 System.out.println(RED + "Invalid input!! Please enter !!!!" + RESET);
             }
         }
-
         System.out.println(BOLD + CYAN + "══════════════════════════════" + RESET);
         System.out.println(BOLD + CYAN + "     PRODUCTS ADDED/UPDATED   " + RESET);
         System.out.println(BOLD + CYAN + "══════════════════════════════" + RESET);

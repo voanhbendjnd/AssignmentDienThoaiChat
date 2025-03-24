@@ -115,7 +115,6 @@ public class MenuSystem {
                     new AddProduct().addNewProduct();
                 } else if (q == 3) {
                     System.out.println(BOLD + RED + " Form Deleting a product..." + RESET);
-                    // new DeleteProduct().deleteProduct();
                     new DeleteProduct().delete();
                 } else if (q == 4) {
                     System.out.println(BOLD + CYAN + " Displaying all products..." + RESET);

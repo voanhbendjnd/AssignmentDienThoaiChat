@@ -20,8 +20,8 @@ public class ValidationUser {
         if (name.trim().isEmpty()) {
             sb.add("Username not empty!");
         }
-        if (email.trim().isEmpty() || !email.contains("@")) {
-            sb.add("Email not empty and uncorrect format!");
+        if (email.trim().isEmpty() || !email.endsWith("@gmail.com") || email.equals("@gmail.com")) {
+            sb.add("Email not empty or uncorrect format!");
         }
         if (password.length() < 8) {
             sb.add("Password must be more than 8 characters");

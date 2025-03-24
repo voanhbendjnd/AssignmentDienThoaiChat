@@ -99,7 +99,7 @@ public class RegisterForm {
                 }
 
             } else if (choice == 2) {
-                System.out.print(BOLD + YELLOW + " <> Please enter email for new account: " + RESET);
+                System.out.print(BOLD + YELLOW + " <> Please enter gmail for new account: " + RESET);
                 String email = sc.nextLine();
                 System.out.print(BOLD + GREEN + " <> Please enter full name for new account: " + RESET);
                 String user = sc.nextLine();
